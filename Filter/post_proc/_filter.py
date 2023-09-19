@@ -13,7 +13,6 @@ def classesFilter(predict_raster, mask2, mask3):
     # Since LCMAP and CDL masks are probablity masks, we need to consider a threshold 
     
     thresh_dev = 20  #This removes misclassified areas that were urban areas in reality for more than 2 years
-    thresh_cdl = 20  #This removes misclassified areas that were crop lands in reality for more than 2 year
     
     # Reading masks
     mask2_arr = mask2.read(1)
@@ -25,10 +24,10 @@ def classesFilter(predict_raster, mask2, mask3):
     dev_mask = mask2_arr.copy()
     dev_mask[dev_mask <= thresh_dev] = 0
     dev_mask[dev_mask > thresh_dev] = 1
-
+    
     cdl_mask = mask3_arr.copy()
-    cdl_mask[cdl_mask <= thresh_cdl] = 0
-    cdl_mask[cdl_mask > thresh_cdl] = 1
+    cdl_mask[cdl_mask != 2] = 0
+    cdl_mask[cdl_mask == 2] = 1
     
     dev_cdl = np.logical_or(dev_mask, cdl_mask)
     

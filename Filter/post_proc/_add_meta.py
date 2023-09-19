@@ -9,7 +9,7 @@ def addMeta_final(memfile_io, file_bucket, dst, aws_access_key_id, aws_secret_ac
         file_bucket (str): name of the tile
     """
     
-    output_name = os.path.join('22Modified_'+file_bucket[25:-4]+'.tif')
+    output_name = os.path.join('Modified_'+file_bucket[25:-4]+'.tif')
     
     
     output_name = 'GIS_processing/' + output_name
